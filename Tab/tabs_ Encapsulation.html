@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab选项卡</title>
+</head>
+<style>
+    .contanir {
+        max-width: 800px;
+        margin: 30px auto;
+        border-radius: 4px;
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+        padding: 16px;
+    }
+
+    .tabs .tab-header {
+        position: relative;
+        display: flex;
+        font-size: 13px;
+        font-weight: 500;
+        color: #303030;
+        line-height: 30px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .tabs .tab-items {
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    .tabs .tab-items.active {
+        color: #409eff;
+    }
+
+    .tabs .line {
+        position: absolute;
+        transform: translateX(0);
+        width: 50px;
+        height: 2px;
+        background-color: #409eff;
+        top: 100%;
+        transition: all .3s;
+    }
+
+    .tabs .tab-panel {
+        font-size: 14px;
+        padding: 16px 0;
+        display: none;
+    }
+
+    .tabs .tab-panel.active {
+        display: block;
+    }
+</style>
+
+<body>
+    <div class="contanir">
+        <h2>Tab选项卡1</h2>
+        <div class="tabs">
+            <div class="tab-header">
+                <span class="tab-items active">用户管理</span>
+                <span class="tab-items">配置管理</span>
+                <span class="tab-items">角色管理</span>
+                <span class="tab-items">定时任务补偿</span>
+                <span class="line"></span>
+            </div>
+            <div class="tab-content">
+                <div class="tab-panel active">用户管理</div>
+                <div class="tab-panel">配置管理</div>
+                <div class="tab-panel">角色管理</div>
+                <div class="tab-panel">定时任务补偿</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contanir">
+        <h2>Tab选项卡2</h2>
+        <div class="tabs">
+            <div class="tab-header">
+                <span class="tab-items active">用户管理</span>
+                <span class="tab-items">配置管理</span>
+                <span class="tab-items">角色管理</span>
+                <span class="tab-items">定时任务补偿</span>
+                <span class="line"></span>
+            </div>
+            <div class="tab-content">
+                <div class="tab-panel active">用户管理</div>
+                <div class="tab-panel">配置管理</div>
+                <div class="tab-panel">角色管理</div>
+                <div class="tab-panel">定时任务补偿</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    class Tabs {
+        constructor($contanir) {
+            this.$contanir = $contanir
+            this.$$tabitems =$contanir.querySelectorAll('.tab-items')
+            this.$$panel = $contanir.querySelectorAll('.tab-panel')
+            this.$line = $contanir.querySelector('.line')
+
+            this.init()
+            this.bind()
+        }
+
+        init() {
+            this.$line.style.width = this.$$tabitems[0].offsetWidth + 'px'
+        }
+
+        bind() {
+            let self = this
+            this.$$tabitems.forEach($tab => {
+                $tab.onclick = function () {
+                    self.$$tabitems.forEach($tab => $tab.classList.remove('active'))
+                    this.classList.add('active')
+
+                    self.$line.style.width = this.offsetWidth + 'px'
+                    self.$line.style.transform = `translateX(${this.offsetLeft}px)`
+                    let index = [...self.$$tabitems].indexOf(this)
+                    self.$$panel.forEach($panel => $panel.classList.remove('active'))
+                    self.$$panel[index].classList.add('active')
+                }
+            })
+        }
+    }
+    document.querySelectorAll('.tabs').forEach($contanir => new Tabs($contanir))
+</script>
