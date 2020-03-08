@@ -1,0 +1,46 @@
+.contanir {
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+    padding: 16px;
+}
+
+.tabs .tab-header {
+    position: relative;
+    display: flex;
+    font-size: 13px;
+    font-weight: 500;
+    color: #303030;
+    line-height: 30px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tabs .tab-items {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.tabs .tab-items.active {
+    color: #409eff;
+}
+
+.tabs .line {
+    position: absolute;
+    transform: translateX(0);
+    width: 50px;
+    height: 2px;
+    background-color: #409eff;
+    top: 100%;
+    transition: all .3s;
+}
+
+.tabs .tab-panel {
+    font-size: 14px;
+    padding: 16px 0;
+    display: none;
+}
+
+.tabs .tab-panel.active {
+    display: block;
+}

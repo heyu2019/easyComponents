@@ -6,134 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Message消息提示</title>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1675710_wsrdwvoc2tq.css">
+    <link rel="stylesheet" href="/CSS/Message.css">
 </head>
 
 <body>
-    <style>
-        .contanir {
-            max-width: 800px;
-            margin: 30px auto;
-            border-radius: 4px;
-            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
-            padding: 16px;
-        }
-        .button {
-            padding: 10px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #303030;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .button:hover {
-            color: lightblue;
-            border-color: lightblue;
-        }
-
-        .message {
-            display: flex;
-            align-items: center;
-            position: fixed;
-            left: 50%;
-            top: 10px;
-            transform: translate(-50%,-50px);
-            padding: 10px 16px;
-            background-color: #67C23A;
-            font-size: 14px;
-            color: #fff;
-            border-radius: 4px;
-            opacity: 0;
-            transition: all .3s;
-        }
-
-        .message .iconfont {
-            margin-right: 6px;
-        }
-
-
-        .message.show {
-            transform: translate(-50%,20px);
-            opacity: 1;
-        }
-
-        .message.success {
-            background-color: #67C23A;
-        }
-
-        .message.waring {
-            background-color: #E6A23C;
-        }
-
-        .message.info {
-            background-color: #989399;
-        }
-
-        .message.danger {
-            background-color: #f56c6c;
-        }
-    </style>
-</body>
-<div class="contanir">
-    <h2>Message消息提示</h2>
-    <div class="btn-growp">
-        <button id="button-success" class="button">成功</button>
-        <button id="button-waring" class="button">警告</button>
-        <button id="button-info" class="button">消息</button>
-        <button id="button-danger" class="button">错误</button>
+    <div class="contanir">
+        <h2>Message消息提示</h2>
+        <div class="btn-growp">
+            <button id="button-success" class="button">成功</button>
+            <button id="button-waring" class="button">警告</button>
+            <button id="button-info" class="button">消息</button>
+            <button id="button-danger" class="button">错误</button>
+        </div>
     </div>
-</div>
+</body>
 </html>
-<script>
-    class Message {
-        constructor({type='success',text=''}){
-            this.type = type
-            this.text = text
-
-            this.render()
-            this.bind()
-        }
-        render(){
-            let $div = document.createElement('div')
-            this.$message = $div
-            $div.classList.add('message')
-            $div.classList.add(this.type)
-            let $icon = document.createElement('span')
-            $icon.classList.add('iconfont')
-            $icon.classList.add('icon-' + this.type)
-            $div.appendChild($icon)
-            let $text = document.createTextNode(this.text)
-            $div.appendChild($text)
-            document.body.appendChild($div)
-        }
-
-        bind(){
-            setTimeout(()=>this.show(),0)
-            setTimeout(()=>this.destory(),3000)
-        }
-
-        show(){
-            this.$message.classList.add('show')
-        }
-
-        destory(){
-            this.$message.classList.remove('show')
-            setTimeout(()=>this.$message.parentNode.removeChild(this.$message),400)
-            
-        }
-    }
-    document.querySelector('#button-success').onclick = function(){
-        new Message({text:'成功',type:'success'})
-    }
-    document.querySelector('#button-waring').onclick = function(){
-        new Message({text:'警告',type:'waring'})
-    }
-    document.querySelector('#button-info').onclick = function(){
-        new Message({text:'消息',type:'info'})
-    }
-    document.querySelector('#button-danger').onclick = function(){
-        new Message({text:'危险',type:'danger'})
-    }
-</script>
+<script src="/JS/Message.js"></script>

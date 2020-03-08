@@ -4,49 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tab选项卡</title>
+    <link rel="stylesheet" href="/CSS/Tab.css">
 </head>
-<style>
-    .contanir {
-        max-width: 800px;
-        margin: 30px auto;
-        border-radius: 4px;
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
-        padding: 16px;
-    }
-    .tabs .tab-header {
-        position: relative;
-        display: flex;
-        font-size: 13px;
-        font-weight: 500;
-        color: #303030;
-        line-height: 30px;
-        border-bottom: 2px solid #ddd;
-    }
-    .tabs .tab-items{
-        margin-right: 20px;
-        cursor: pointer;
-    }
-    .tabs .tab-items.active {
-        color: #409eff;
-    }
-    .tabs .line {
-        position: absolute;
-        transform: translateX(0);
-        width: 50px;
-        height: 2px;
-        background-color:  #409eff;
-        top: 100%;
-        transition: all .3s;
-    }
-    .tabs .tab-panel {
-        font-size: 14px;
-        padding: 16px 0;
-        display: none;
-    }
-    .tabs .tab-panel.active {
-        display: block;
-    }
-</style>
+
 <body>
     <div class="contanir">
         <h2>Tab选项卡</h2>
@@ -69,25 +29,4 @@
 </body>
 </html>
 
-<script>
-    const $ =s =>document.querySelector(s)
-    const $$ = s =>document.querySelectorAll(s)
-    
-    const $tabitems = $$('.tabs .tab-items')
-    const $$panel = $$('.tabs .tab-panel')
-    const $line = $('.tabs .line')
-
-    $line.style.width = $tabitems[0].offsetWidth + 'px'
-    $tabitems.forEach($tab => {
-        $tab.onclick = function(){
-            $tabitems.forEach($tab => $tab.classList.remove('active'))
-            this.classList.add('active')
-
-            $line.style.width = this.offsetWidth + 'px'
-            $line.style.transform = `translateX(${this.offsetLeft}px)`
-            let index = [... $tabitems].indexOf(this)
-            $$panel.forEach($panel => $panel.classList.remove('active'))
-            $$panel[index].classList.add('active')
-        }
-    });
-</script>
+<script src="/JS/Tab.js"></script>

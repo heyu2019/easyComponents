@@ -5,62 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>collapse折叠面板</title>
+    <link rel="stylesheet" href="/CSS/Collapse.css">
 </head>
-<style>
-    .contanir {
-        max-width: 800px;
-        margin: 30px auto;
-        border-radius: 4px;
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
-        padding: 16px;
-    }
-
-    .collapse {
-        font-size: 13px;
-    }
-
-    .collapse .collapse-header {
-        border-top: 1px solid #ddd;
-        cursor: pointer;
-    }
-
-    .collapse .collapse-header:last-child {
-        border-bottom: 1px solid #ddd;
-    }
-    .collapse .collapse-item {
-        display: flex;
-        align-items: center;
-        color: #303030;
-        line-height: 50px;
-        font-weight: 500;
-        
-    }
-    .collapse .collapse-item::after {
-        content: '';
-        display: block;
-        width: 6px;
-        height: 6px;
-        border-top: 1px solid #303030;
-        border-right: 1px solid #303030;
-        margin-left: auto;
-        transform: rotate(45deg);
-        transition: all .3s;
-    }
-    .collapse .collapse-header.collapse-header.active .collapse-item::after {
-        transform: rotate(135deg);
-    }
-    .collapse .collapse-pannel {
-        font-size: 14px;
-        color: #666;
-        height: 0;
-        overflow: hidden;
-        transition: all .3s;
-    }
-    .collapse .collapse-header.active .collapse-pannel {
-        height: auto;
-        padding-bottom: 16px;
-    }
-</style>
 
 <body>
     <div class="contanir">
@@ -123,28 +69,4 @@
 
 </html>
 
-<script>
-    class collapse{
-        constructor($contanir,type=1){
-            this.$contanir = $contanir
-            this.$$collapseitem = $contanir.querySelectorAll('.collapse-header')
-            this.type = type
-            this.bind()
-        }
-        bind(){
-            let self = this
-            this.$$collapseitem.forEach($item => {
-                $item.onclick = function(){
-                    if(self.type === 2){
-                        this.classList.toggle('active')
-                    }else if(self.type === 1){
-                        self.$$collapseitem.forEach($item => $item.classList.remove('active'))
-                        this.classList.add('active')
-                    }
-                }
-            })
-        }
-    }
-    new collapse(document.querySelectorAll('.collapse')[0],1)
-    new collapse(document.querySelectorAll('.collapse')[1],2)
-</script>
+<script src="/JS/Collapse.js"></script>
